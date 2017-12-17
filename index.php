@@ -26,6 +26,7 @@ if (isset($_FILES['file'])) {
 	if (!in_array($exp , array('xls', 'xlsx'))) {
 		$message = array('danger', "File tidak sesuai format, gunakan .xlsx atau .xls!");
 	}else if ($_FILES['file']['error'] == 0){
+		file_put_contents($file_data, json_encode(array()));
 		$objPHPExcel 	= PHPExcel_IOFactory::load($_FILES["file"]["tmp_name"]);
 		$data_mentah 	= $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 
